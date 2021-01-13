@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* t3h12LoginGFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* t3h12LoginGFTests.m */; };
 		3C60067003DBEC97A842CC5D /* libPods-t3h12LoginGF-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A43D3793CC7F2BFD2150AA6C /* libPods-t3h12LoginGF-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		845D06C725AED23F009C57B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 845D06C625AED23F009C57B8 /* GoogleService-Info.plist */; };
 		C163E35C7C43CA4E755DD3B9 /* libPods-t3h12LoginGF-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E96870A80010FFFA00624 /* libPods-t3h12LoginGF-tvOS.a */; };
 		F79E74B03C6E1AC464FB1FB9 /* libPods-t3h12LoginGF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED742792EA2D2388FA45F86 /* libPods-t3h12LoginGF.a */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		458E96870A80010FFFA00624 /* libPods-t3h12LoginGF-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-t3h12LoginGF-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67A843F63CB246ED2D51EA7C /* Pods-t3h12LoginGF-t3h12LoginGFTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-t3h12LoginGF-t3h12LoginGFTests.release.xcconfig"; path = "Target Support Files/Pods-t3h12LoginGF-t3h12LoginGFTests/Pods-t3h12LoginGF-t3h12LoginGFTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = t3h12LoginGF/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		845D06C625AED23F009C57B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9073ACB4432EFEED6A4F1B0B /* Pods-t3h12LoginGF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-t3h12LoginGF.release.xcconfig"; path = "Target Support Files/Pods-t3h12LoginGF/Pods-t3h12LoginGF.release.xcconfig"; sourceTree = "<group>"; };
 		A43D3793CC7F2BFD2150AA6C /* libPods-t3h12LoginGF-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-t3h12LoginGF-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90A3575E616A4B324F4A2E1 /* Pods-t3h12LoginGF-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-t3h12LoginGF-tvOS.release.xcconfig"; path = "Target Support Files/Pods-t3h12LoginGF-tvOS/Pods-t3h12LoginGF-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				845D06C625AED23F009C57B8 /* GoogleService-Info.plist */,
 			);
 			name = t3h12LoginGF;
 			sourceTree = "<group>";
@@ -194,7 +197,6 @@
 				E59EA2387DFE532C8B477F7F /* Pods-t3h12LoginGF-tvOSTests.debug.xcconfig */,
 				060ACBCAC0E21F0617B903CA /* Pods-t3h12LoginGF-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -342,6 +344,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				845D06C725AED23F009C57B8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,10 +387,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-t3h12LoginGF-t3h12LoginGFTests/Pods-t3h12LoginGF-t3h12LoginGFTests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,10 +429,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-t3h12LoginGF/Pods-t3h12LoginGF-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
