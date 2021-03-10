@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, Alert } from 'react-native';
 import { fcmService } from './service/FCMservices';
 import { localNotificationService } from './service/localNotificationService';
-
+import { notifikasi } from './src/Notifikasi'
 const App = ({
   params,
 }) => {
   useEffect(() => {
-    fcmService.requestUserPermission();
     fcmService.registerAppWithFCM();
     fcmService.register(onRegister, onNotification, onOpenNotification);
     localNotificationService.config(onOpenNotification);
@@ -44,16 +43,39 @@ const App = ({
     }
     function onOpenNotification(notify) {
       console.log('[App] onOpenNotification : ', notify);
-      // alert('[App] onOpenNotification : ', notify);
+      // Alert.alert(
+      //   notify.title,
+      //   notify.body,
+      //   [
+      //     {
+      //       text: 'Cancel',
+      //       onPress: () => console.log('Cancel Pressed'),
+      //       style: 'cancel',
+      //     },
+      //     { text: 'OK', onPress: () => console.log('OK Pressed') },
+      //   ],
+      //   { cancelable: false },
+      // );
     }
   }, []);
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
       <Button onPress={() => {
-        localNotificationService.showNotification(
-          1, "App notification", "Local notification", {}, {},
+        localNotificationService.buatChannel("1");
+        localNotificationService.showlocalNotification(
+          "1", "Programming di Rumahrafif", "Terima kasih sudah subscribe"
         )
+        // alert('test')
+      }} title={'notificaiton old'} />
+      <Button onPress={() => {
+        // localNotificationService.showNotification(
+        //   "App notification", "Local notification",
+        // )
+        notifikasi.configure();
+        notifikasi.buatChannel("1");
+        notifikasi.kirimNotifikasiJadwal("1", "Programming di Rumahrafif", "Terima kasih sudah subscribe");
+        // alert('test')
       }} title={'send local notificaiton'} />
     </View>
   );

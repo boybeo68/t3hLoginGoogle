@@ -1,5 +1,5 @@
 import messaging from '@react-native-firebase/messaging';
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 
 class FCMService {
   register = (onRegister, onNotification, onOpenNotification) => {
@@ -11,8 +11,6 @@ class FCMService {
     );
   };
 
-
-//register notification ios
   registerAppWithFCM = async () => {
     if (Platform.OS === 'ios') {
       await messaging().registerDeviceForRemoteMessages();
@@ -20,16 +18,6 @@ class FCMService {
     }
   };
 
-  // request user permission
-  requestUserPermission = async () => {
-    const authStatus = await messaging().requestPermission();
-    const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-    enabled && console.log("Authorization status", enabled);
-  }
-
-
-
-  // check permission
   checkPermission = (onRegister) => {
     messaging()
       .hasPermission()
@@ -45,7 +33,6 @@ class FCMService {
       });
   };
 
-  //getToken device
   getToken = (onRegister) => {
     messaging()
       .getToken()
@@ -60,12 +47,6 @@ class FCMService {
         console.log('[FCMService] getToken reject', error);
       });
   };
-
-
-  // register handler notification - app close
-
-
-  // require permission in device
   requestPermission = (onRegister) => {
     messaging()
       .requestPermission()
@@ -76,8 +57,6 @@ class FCMService {
         console.log('[FCMService] Request Permission  reject', error);
       });
   };
-
-  // delete token
   deleteToken = () => {
     console.log('[FCMService] deleteToken');
     messaging()
@@ -86,7 +65,6 @@ class FCMService {
         console.log('[FCMService] DeleteToken error', error);
       });
   };
-
   createNotificationListeners = (
     onRegister,
     onNotification,
@@ -113,17 +91,7 @@ class FCMService {
           onOpenNotification(notification);
         }
       });
-
-    // set background message handler
-    registerHandlessTaskClose = messaging().setBackgroundMessageHandler(async remoteMessage => {
-      console.log('Message handled in background', remoteMessage);
-      const notification = remoteMessage.notification;
-      onOpenNotification(notification);
-    })
-
-
-
-    // Foreground state messages
+      // Foreground state messages
     this.messageListener = messaging().onMessage(async (remoteMessage) => {
       console.log('[FCMService] A new FCMService arrived!', remoteMessage);
       if (remoteMessage) {

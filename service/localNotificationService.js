@@ -1,6 +1,5 @@
 import PushNotification from 'react-native-push-notification';
-
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Platform } from 'react-native';
 
 class LocalNotificationService {
@@ -14,14 +13,13 @@ class LocalNotificationService {
         if (!notification?.data) {
           return;
         }
-
         notification.userInteraction = true;
         onOpenNotification(
           Platform.OS === 'ios' ? notification.data.item : notification.data,
         );
         // Only call callback if not from foreground
         if (Platform.OS === 'ios') {
-          notification.finish(PushNotificationIOS.FetchResult.NoData);
+          notification.finish(PushNotificationIOS.FetchResult.NoData)
         }
       },
       permissions: {
@@ -35,6 +33,13 @@ class LocalNotificationService {
   };
   unregister = () => {
     PushNotification.unregister();
+  };
+  showlocalNotification = (id, title, message, data = {}, options = {}) => {
+    PushNotification.localNotification({
+      channelId: id, //
+      title: title, // (optional)
+      message: message, // (required)
+    });
   };
   showNotification = (id, title, message, data = {}, options = {}) => {
     PushNotification.localNotification({
@@ -56,8 +61,8 @@ class LocalNotificationService {
       bigText: message || '',
       subText: title || '',
       vibrate: options.vibrate || true,
-      vibration: options.vibration || 300, //rung
-      priority: options.priority || 'high', // uu tien
+      vibration: options.vibration || 300,
+      priority: options.priority || 'high',
       importance: options.importance || 'high',
       data: data,
     };
@@ -65,13 +70,27 @@ class LocalNotificationService {
   buildIOSNotification = (id, title, message, data = {}, options = {}) => {
     return {
       alertAction: options.alertAction || 'view',
-      category: options.category || '',
+      category: options.category || "",
       userInfo: {
         id: id,
-        item: data,
-      },
+        item: data
+      }
     };
   };
+  buatChannel = (channel) => {
+    PushNotification.createChannel(
+        {
+          channelId: channel, // (required)
+          channelName: "My channel", // (required)
+          channelDescription: "A channel to categorise your notifications", // (optional) default: undefined.
+          playSound: false, // (optional) default: true
+          soundName: "default", // (optional) See `soundName` parameter of `localNotification` function
+          importance: 4, // (optional) default: 4. Int value of the Android notification importance
+          vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
+        },
+        (created) => console.log(`createChannel returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
+      );
+}
   cancelAllLocalNotifications = () => {
     if (Platform.OS === 'ios') {
       PushNotification.removeAllDeliveredNotifications();
